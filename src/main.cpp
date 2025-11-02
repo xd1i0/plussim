@@ -1,12 +1,16 @@
 #include "raylib.h"
 #include "double_pendulum.h"
 #include <cmath>
+#include <string>
+#include "string"
 
 int main() {
     const int screenWidth = 800;
     const int screenHeight = 600;
 
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(screenWidth, screenHeight, "Double Pendulum Simulation");
+    
     SetTargetFPS(60);
 
     DoublePendulum pendulum(100.0f, 100.0f, 10.0f, 10.0f, M_PI / 2.0f, M_PI / 2.0f, 0.05f);
@@ -30,9 +34,14 @@ int main() {
         DrawCircleV(pos2, pendulum.getMass2(), BLUE);
 
         DrawCircleV(origin, 5, BLACK);
+       
+        int fps = GetFPS();
+        float frameTime = GetFrameTime();
+        std::string frameTimeStr = "FPS: " + std::to_string(fps) + " FrameTime: " + std::to_string(frameTime);
+        DrawText(frameTimeStr.c_str() , 10, 10, 20, BLACK);
 
-        DrawText("Double Pendulum Simulation", 10, 10, 20, LIGHTGRAY);
-        DrawText("Press ESC to exit", 10, 40, 16, LIGHTGRAY);
+        DrawText("Double Pendulum Simulation", 10, 40, 20, BLACK);
+        DrawText("Press ESC to exit", 10, 60, 16, BLACK);
 
         EndDrawing();
     }
