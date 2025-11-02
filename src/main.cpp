@@ -1,8 +1,6 @@
-#include <cmath>
-#include <iostream>
-
 #include "raylib.h"
 #include "double_pendulum.h"
+#include <cmath>
 
 int main() {
     const int screenWidth = 800;
