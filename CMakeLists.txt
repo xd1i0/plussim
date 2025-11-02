@@ -11,6 +11,8 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(raylib)
 
-add_executable(${PROJECT_NAME} src/main.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp
+        src/double_pendulum.cpp
+        src/double_pendulum.h)
 
 target_link_libraries(${PROJECT_NAME} raylib)

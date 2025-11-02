@@ -1,13 +1,41 @@
+#include <cmath>
+#include <iostream>
+
 #include "raylib.h"
+#include "double_pendulum.h"
 
 int main() {
-    InitWindow(800, 600, "raylib - Basic Window");
+    const int screenWidth = 800;
+    const int screenHeight = 600;
+
+    InitWindow(screenWidth, screenHeight, "Double Pendulum Simulation");
     SetTargetFPS(60);
 
+    DoublePendulum pendulum(100.0f, 100.0f, 10.0f, 10.0f, M_PI / 2.0f, M_PI / 2.0f, 0.05f);
+
+    Vector2 origin = {screenWidth / 2.0f, 200.0f};
+
     while (!WindowShouldClose()) {
+        pendulum.update();
+
+        // Get positions
+        Vector2 pos1 = pendulum.getPos1(origin);
+        Vector2 pos2 = pendulum.getPos2(origin);
+
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        DrawText("Hello, raylib!", 190, 200, 20, LIGHTGRAY);
+
+        DrawLineEx(origin, pos1, 2, DARKGRAY);
+        DrawLineEx(pos1, pos2, 2, DARKGRAY);
+
+        DrawCircleV(pos1, pendulum.getMass1(), RED);
+        DrawCircleV(pos2, pendulum.getMass2(), BLUE);
+
+        DrawCircleV(origin, 5, BLACK);
+
+        DrawText("Double Pendulum Simulation", 10, 10, 20, LIGHTGRAY);
+        DrawText("Press ESC to exit", 10, 40, 16, LIGHTGRAY);
+
         EndDrawing();
     }
 
