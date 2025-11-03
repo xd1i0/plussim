@@ -28,6 +28,6 @@ file(GLOB_RECURSE EXT_FILES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
 )
 
-add_executable(${PROJECT_NAME} ${HEADER_FILES} ${SRC_FILES})
+add_executable(${PROJECT_NAME} ${HEADER_FILES} ${SRC_FILES} ${EXT_FILES})
 
 target_link_libraries(${PROJECT_NAME} PUBLIC raylib)
