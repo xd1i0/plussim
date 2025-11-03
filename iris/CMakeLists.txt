@@ -1,5 +1,8 @@
 project(iris) # TODO adapt to visual project name
 
+# Export compile commands for IDE support (Zed, VSCode, etc.)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 include(FetchContent)
 
 # Fetch raylib
