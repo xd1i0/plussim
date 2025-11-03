@@ -1,6 +1,5 @@
 #include "raylib.h"
 #include "double_pendulum.h"
-#include <cmath>
 #include <string>
 #include "string"
 
