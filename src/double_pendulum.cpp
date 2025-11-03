@@ -3,6 +3,7 @@
 //
 
 #include "double_pendulum.h"
+#include "raylib.h"
 #include <cmath>
 
 DoublePendulum::DoublePendulum(float length1, float length2, float mass1, float mass2,

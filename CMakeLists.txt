@@ -23,6 +23,10 @@ FetchContent_MakeAvailable(raylib)
 file(GLOB_RECURSE HEADER_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 file(GLOB_RECURSE SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
+file(GLOB_RECURSE EXT_FILES 
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h
+)
 
 add_executable(${PROJECT_NAME} ${HEADER_FILES} ${SRC_FILES})
 
