@@ -1,4 +1,4 @@
-project(plussim) # TODO adapt to visual project name
+project(iris) # TODO adapt to visual project name
 
 include(FetchContent)
 

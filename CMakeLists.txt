@@ -12,8 +12,8 @@ endif()
 # Export compile commands for IDE support (Zed, VSCode, etc.)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-enable_testing()
+enable_testing() # can be removed when you dont want to have tests enabled
 
 # Add subdirectories
 add_subdirectory(stellaris)
-add_subdirectory(visual)
+add_subdirectory(iris)
