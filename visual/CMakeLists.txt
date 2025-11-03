@@ -1,17 +1,4 @@
-cmake_minimum_required(VERSION 3.31)
-project(plussim)
-
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-# Set default build type to Release if not specified
-if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose: Debug Release RelWithDebInfo MinSizeRel" FORCE)
-endif()
-
-# Export compile commands for IDE support (Zed, VSCode, etc.)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
+project(plussim) # TODO adapt to visual project name
 
 include(FetchContent)
 
@@ -46,6 +33,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC raylib)
 FetchContent_Declare(
   googletest
   URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+  GIT_SHALLOW TRUE
 )
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
