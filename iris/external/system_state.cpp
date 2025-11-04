@@ -6,7 +6,7 @@
 #include <cstring>
 #include <cmath>
 
-atg_scs::SystemState::SystemState() {
+SystemState::SystemState() {
     indexMap = nullptr;
 
     a_theta_x = nullptr;
@@ -50,12 +50,12 @@ atg_scs::SystemState::SystemState() {
     dt = 0.0;
 }
 
-atg_scs::SystemState::~SystemState() {
+SystemState::~SystemState() {
     assert(n == 0);
     assert(n_c == 0);
 }
 
-void atg_scs::SystemState::copy(const SystemState *state) {
+void SystemState::copy(const SystemState *state) {
     resize(state->n, state->n_c);
 
     if (state->n == 0) {
@@ -101,7 +101,7 @@ void atg_scs::SystemState::copy(const SystemState *state) {
     std::memcpy((void *)r_t_z, (void *)state->r_t_z, sizeof(double) * n_c * 2);
 }
 
-void atg_scs::SystemState::resize(int bodyCount, int constraintCount) {
+void SystemState::resize(int bodyCount, int constraintCount) {
     if (n >= bodyCount && n_c >= constraintCount) {
         return;
     }
@@ -150,7 +150,7 @@ void atg_scs::SystemState::resize(int bodyCount, int constraintCount) {
     r_t_z = new double[(size_t)n_c * 2];
 }
 
-void atg_scs::SystemState::destroy() {
+void SystemState::destroy() {
     if (n > 0) {
         freeArray(a_theta_x);
         freeArray(a_theta_y);
@@ -197,7 +197,7 @@ void atg_scs::SystemState::destroy() {
     n_c = 0;
 }
 
-void atg_scs::SystemState::localToWorld(
+void SystemState::localToWorld(
         double x,
         double y,
         double z,
@@ -238,7 +238,7 @@ void atg_scs::SystemState::localToWorld(
     *z_t = r20 * x + r21 * y + r22 * z + z0;
 }
 
-void atg_scs::SystemState::velocityAtPoint(
+void SystemState::velocityAtPoint(
         double x,
         double y,
         double z,
@@ -270,7 +270,7 @@ void atg_scs::SystemState::velocityAtPoint(
     *v_z = this->v_z[body] + angularToLinear_z;
 }
 
-void atg_scs::SystemState::applyForce(
+void SystemState::applyForce(
     double x_l,
     double y_l,
     double z_l,

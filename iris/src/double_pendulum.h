@@ -6,6 +6,8 @@
 #define PLUSSIM_DOUBLE_PENDULUM_H
 
 #include "raylib.h"
+#include <array>
+#include <vector>
 
 class DoublePendulum {
 private:
@@ -26,6 +28,11 @@ public:
     Vector2 getPos2(Vector2 origin) const;
     float getMass1() const { return m1; }
     float getMass2() const { return m2; }
+
+    // Adapter for external solvers
+    std::array<double,4> toVector() const;                       // {a1, a2, av1, av2}
+    void fromVector(const std::array<double,4>& v);              // apply integrated result
+    void computeDerivatives(const std::array<double,4>& s, std::array<double,4>& ds) const;
 };
 
 

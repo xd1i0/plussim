@@ -6,7 +6,7 @@
 #define PLUSSIM_SYSTEM_STATE_H
 
 
-namespace atg_scs {
+
     class SystemState {
     public:
         SystemState();
@@ -72,7 +72,7 @@ namespace atg_scs {
         int n_c;
         double dt;
     };
-} /* namespace atg_scs */
+
 
 
 #endif //PLUSSIM_SYSTEM_STATE_H

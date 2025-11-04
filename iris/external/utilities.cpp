@@ -4,12 +4,12 @@
 
 #include "utilities.h"
 
-void atg_scs::freeArray(double *&data) {
+void freeArray(double *&data) {
     delete[] data;
     data = nullptr;
 }
 
-void atg_scs::freeArray(int *&data) {
+void freeArray(int *&data) {
     delete[] data;
     data = nullptr;
 }
