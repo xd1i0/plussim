@@ -3,6 +3,7 @@
 #include <string>
 #include "string"
 #include "stellaris/models/planetes.h"
+#include "rlImGui.h"
 
 int main() {
     const int screenWidth = 800;
