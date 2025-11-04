@@ -2,14 +2,15 @@
 #include "double_pendulum.h"
 #include <string>
 #include "string"
+#include "stellaris/models/planetes.h"
 
 int main() {
     const int screenWidth = 800;
     const int screenHeight = 600;
-
+    
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(screenWidth, screenHeight, "Double Pendulum Simulation");
-    
+
     SetTargetFPS(60);
 
     DoublePendulum pendulum(100.0f, 100.0f, 10.0f, 10.0f, M_PI / 2.0f, M_PI / 2.0f, 0.05f);
@@ -33,7 +34,7 @@ int main() {
         DrawCircleV(pos2, pendulum.getMass2(), BLUE);
 
         DrawCircleV(origin, 5, BLACK);
-       
+
         int fps = GetFPS();
         float frameTime = GetFrameTime();
         std::string frameTimeStr = "FPS: " + std::to_string(fps) + " FrameTime: " + std::to_string(frameTime);

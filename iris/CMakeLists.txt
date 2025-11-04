@@ -28,7 +28,7 @@ file(GLOB_RECURSE EXT_FILES
 add_executable(${PROJECT_NAME} ${HEADER_FILES} ${SRC_FILES} ${EXT_FILES})
 
 # link the executable to raylib
-target_link_libraries(${PROJECT_NAME} PUBLIC raylib)
+target_link_libraries(${PROJECT_NAME} PUBLIC raylib stellaris)
 
 
 # -------------- tests -------------- # 

@@ -23,7 +23,9 @@ add_library(${PROJECT_NAME} SHARED
 target_include_directories(
   ${PROJECT_NAME} 
   PUBLIC
-  ${CMAKE_CURRENT_SOURCE_DIR}/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+  PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
 )
 
 # Only add tests if this is built as the main project
