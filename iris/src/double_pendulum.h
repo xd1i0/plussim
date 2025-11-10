@@ -24,8 +24,8 @@ public:
                    float angle1, float angle2, float timeStep = 0.05f);
 
     void update();
-    Vector2 getPos1(Vector2 origin) const;
-    Vector2 getPos2(Vector2 origin) const;
+    Vector3 getPos1(Vector3 origin) const;
+    Vector3 getPos2(Vector3 origin) const;
     float getMass1() const { return m1; }
     float getMass2() const { return m2; }
 

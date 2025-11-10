@@ -6,7 +6,7 @@
 #define PLUSSIM_RK4SOLVER_H
 
 
-#include "solver.h"
+#include "../self/solver.h"
 
 
 class Rk4Solver : public Solver {

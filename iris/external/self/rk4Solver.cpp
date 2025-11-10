@@ -2,7 +2,7 @@
 // Created by Daniel Schatz on 04.11.25.
 //
 
-#include "rk4Solver.h"
+#include "../self/rk4Solver.h"
 
 Rk4Solver::Rk4Solver() {
     m_stage = m_nextStage = RkStage::Undefined;

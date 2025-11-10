@@ -5,7 +5,7 @@
 #include "double_pendulum.h"
 #include "raylib.h"
 #include <cmath>
-#include "../external/rk4Solver.h"
+#include "../external/self/rk4Solver.h"
 
 DoublePendulum::DoublePendulum(float length1, float length2, float mass1, float mass2,
                                float angle1, float angle2, float timeStep)
@@ -117,11 +117,11 @@ void DoublePendulum::computeDerivatives(const std::array<double,4>& s, std::arra
     ds[3] = num2 / den2;
 }
 
-Vector2 DoublePendulum::getPos1(Vector2 origin) const {
-    return {(float)(origin.x + l1 * sin(a1)), (float)(origin.y + l1 * cos(a1))};
+Vector3 DoublePendulum::getPos1(Vector3 origin) const {
+    return {(float)(origin.x + l1 * sin(a1)), (float)(origin.y - l1 * cos(a1)), (float)(0.0f)};
 }
 
-Vector2 DoublePendulum::getPos2(Vector2 origin) const {
-    Vector2 pos1 = getPos1(origin);
-    return {(float)(pos1.x + l2 * sin(a2)), (float)(pos1.y + l2 * cos(a2))};
+Vector3 DoublePendulum::getPos2(Vector3 origin) const {
+    Vector3 pos1 = getPos1(origin);
+    return {(float)(pos1.x + l2 * sin(a2)), (float)(pos1.y - l2 * cos(a2)), (float)(0.0f)};
 }
