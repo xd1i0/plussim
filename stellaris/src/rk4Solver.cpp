@@ -8,11 +8,6 @@ Rk4Solver::Rk4Solver() {
     m_stage = m_nextStage = RkStage::Undefined;
 }
 
-Rk4Solver::~Rk4Solver() {
-    m_initialState.destroy();
-    m_accumulator.destroy();
-}
-
 void Rk4Solver::start(SystemState *initial, double dt) {
     Solver::start(initial, dt);
 

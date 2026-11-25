@@ -1,200 +1,32 @@
 #include "stellaris/system_state.h"
 
-#include "utilities.h"
-
-#include <assert.h>
-#include <cstring>
 #include <cmath>
-
-SystemState::SystemState() {
-    indexMap = nullptr;
-
-    a_theta_x = nullptr;
-    a_theta_y = nullptr;
-    a_theta_z = nullptr;
-    v_theta_x = nullptr;
-    v_theta_y = nullptr;
-    v_theta_z = nullptr;
-    theta_x = nullptr;
-    theta_y = nullptr;
-    theta_z = nullptr;
-
-    a_x = nullptr;
-    a_y = nullptr;
-    a_z = nullptr;
-    v_x = nullptr;
-    v_y = nullptr;
-    v_z = nullptr;
-    p_x = nullptr;
-    p_y = nullptr;
-    p_z = nullptr;
-
-    f_x = nullptr;
-    f_y = nullptr;
-    f_z = nullptr;
-    t_x = nullptr;
-    t_y = nullptr;
-    t_z = nullptr;
-
-    m = nullptr;
-
-    r_x = nullptr;
-    r_y = nullptr;
-    r_z = nullptr;
-    r_t_x = nullptr;
-    r_t_y = nullptr;
-    r_t_z = nullptr;
-
-    n = 0;
-    n_c = 0;
-    dt = 0.0;
-}
-
-SystemState::~SystemState() {
-    assert(n == 0);
-    assert(n_c == 0);
-}
+#include <cstddef>
 
 void SystemState::copy(const SystemState *state) {
-    resize(state->n, state->n_c);
-
-    if (state->n == 0) {
-        return;
-    }
-
-    std::memcpy((void *)indexMap, (void *)state->indexMap, sizeof(int) * n_c);
-
-    std::memcpy((void *)a_theta_x, (void *)state->a_theta_x, sizeof(double) * n);
-    std::memcpy((void *)a_theta_y, (void *)state->a_theta_y, sizeof(double) * n);
-    std::memcpy((void *)a_theta_z, (void *)state->a_theta_z, sizeof(double) * n);
-    std::memcpy((void *)v_theta_x, (void *)state->v_theta_x, sizeof(double) * n);
-    std::memcpy((void *)v_theta_y, (void *)state->v_theta_y, sizeof(double) * n);
-    std::memcpy((void *)v_theta_z, (void *)state->v_theta_z, sizeof(double) * n);
-    std::memcpy((void *)theta_x, (void *)state->theta_x, sizeof(double) * n);
-    std::memcpy((void *)theta_y, (void *)state->theta_y, sizeof(double) * n);
-    std::memcpy((void *)theta_z, (void *)state->theta_z, sizeof(double) * n);
-
-    std::memcpy((void *)a_x, (void *)state->a_x, sizeof(double) * n);
-    std::memcpy((void *)a_y, (void *)state->a_y, sizeof(double) * n);
-    std::memcpy((void *)a_z, (void *)state->a_z, sizeof(double) * n);
-    std::memcpy((void *)v_x, (void *)state->v_x, sizeof(double) * n);
-    std::memcpy((void *)v_y, (void *)state->v_y, sizeof(double) * n);
-    std::memcpy((void *)v_z, (void *)state->v_z, sizeof(double) * n);
-    std::memcpy((void *)p_x, (void *)state->p_x, sizeof(double) * n);
-    std::memcpy((void *)p_y, (void *)state->p_y, sizeof(double) * n);
-    std::memcpy((void *)p_z, (void *)state->p_z, sizeof(double) * n);
-
-    std::memcpy((void *)f_x, (void *)state->f_x, sizeof(double) * n);
-    std::memcpy((void *)f_y, (void *)state->f_y, sizeof(double) * n);
-    std::memcpy((void *)f_z, (void *)state->f_z, sizeof(double) * n);
-    std::memcpy((void *)t_x, (void *)state->t_x, sizeof(double) * n);
-    std::memcpy((void *)t_y, (void *)state->t_y, sizeof(double) * n);
-    std::memcpy((void *)t_z, (void *)state->t_z, sizeof(double) * n);
-
-    std::memcpy((void *)m, (void *)state->m, sizeof(double) * n);
-
-    std::memcpy((void *)r_x, (void *)state->r_x, sizeof(double) * n_c * 2);
-    std::memcpy((void *)r_y, (void *)state->r_y, sizeof(double) * n_c * 2);
-    std::memcpy((void *)r_z, (void *)state->r_z, sizeof(double) * n_c * 2);
-    std::memcpy((void *)r_t_x, (void *)state->r_t_x, sizeof(double) * n_c * 2);
-    std::memcpy((void *)r_t_y, (void *)state->r_t_y, sizeof(double) * n_c * 2);
-    std::memcpy((void *)r_t_z, (void *)state->r_t_z, sizeof(double) * n_c * 2);
+    *this = *state;
 }
 
 void SystemState::resize(int bodyCount, int constraintCount) {
-    if (n >= bodyCount && n_c >= constraintCount) {
-        return;
-    }
-
-    destroy();
-
     n = bodyCount;
     n_c = constraintCount;
 
-    indexMap = new int[n_c];
-
-    a_theta_x = new double[n];
-    a_theta_y = new double[n];
-    a_theta_z = new double[n];
-    v_theta_x = new double[n];
-    v_theta_y = new double[n];
-    v_theta_z = new double[n];
-    theta_x = new double[n];
-    theta_y = new double[n];
-    theta_z = new double[n];
-
-    a_x = new double[n];
-    a_y = new double[n];
-    a_z = new double[n];
-    v_x = new double[n];
-    v_y = new double[n];
-    v_z = new double[n];
-    p_x = new double[n];
-    p_y = new double[n];
-    p_z = new double[n];
-
-    f_x = new double[n];
-    f_y = new double[n];
-    f_z = new double[n];
-    t_x = new double[n];
-    t_y = new double[n];
-    t_z = new double[n];
-
-    m = new double[n];
-
-    r_x = new double[(size_t)n_c * 2];
-    r_y = new double[(size_t)n_c * 2];
-    r_z = new double[(size_t)n_c * 2];
-    r_t_x = new double[(size_t)n_c * 2];
-    r_t_y = new double[(size_t)n_c * 2];
-    r_t_z = new double[(size_t)n_c * 2];
-}
-
-void SystemState::destroy() {
-    if (n > 0) {
-        freeArray(a_theta_x);
-        freeArray(a_theta_y);
-        freeArray(a_theta_z);
-        freeArray(v_theta_x);
-        freeArray(v_theta_y);
-        freeArray(v_theta_z);
-        freeArray(theta_x);
-        freeArray(theta_y);
-        freeArray(theta_z);
-
-        freeArray(a_x);
-        freeArray(a_y);
-        freeArray(a_z);
-        freeArray(v_x);
-        freeArray(v_y);
-        freeArray(v_z);
-        freeArray(p_x);
-        freeArray(p_y);
-        freeArray(p_z);
-
-        freeArray(f_x);
-        freeArray(f_y);
-        freeArray(f_z);
-        freeArray(t_x);
-        freeArray(t_y);
-        freeArray(t_z);
-
-        freeArray(m);
+    for (auto *v : {&a_theta_x, &a_theta_y, &a_theta_z,
+                    &v_theta_x, &v_theta_y, &v_theta_z,
+                    &theta_x, &theta_y, &theta_z,
+                    &a_x, &a_y, &a_z,
+                    &v_x, &v_y, &v_z,
+                    &p_x, &p_y, &p_z,
+                    &f_x, &f_y, &f_z,
+                    &t_x, &t_y, &t_z,
+                    &m}) {
+        v->resize(n);
     }
 
-    if (n_c > 0) {
-        freeArray(indexMap);
-
-        freeArray(r_x);
-        freeArray(r_y);
-        freeArray(r_z);
-        freeArray(r_t_x);
-        freeArray(r_t_y);
-        freeArray(r_t_z);
+    indexMap.resize(n_c);
+    for (auto *v : {&r_x, &r_y, &r_z, &r_t_x, &r_t_y, &r_t_z}) {
+        v->resize(static_cast<size_t>(n_c) * 2);
     }
-
-    n = 0;
-    n_c = 0;
 }
 
 void SystemState::localToWorld(

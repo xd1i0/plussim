@@ -23,10 +23,6 @@ Cube::Cube(double mass, double x, double y, double z, double size)
     m_state.t_x[0] = m_state.t_y[0] = m_state.t_z[0] = 0.0;
 }
 
-Cube::~Cube() {
-    m_state.destroy();
-}
-
 void Cube::update(double dt) {
     // Helper lambda to compute forces and accelerations
     auto computeForcesAndAccelerations = [this]() {

@@ -76,9 +76,6 @@ void DoublePendulum::update() {
     a2 = static_cast<float>(state.theta_z[1]);
     av1 = static_cast<float>(state.v_theta_z[0]);
     av2 = static_cast<float>(state.v_theta_z[1]);
-
-    // Clean up allocated arrays in SystemState
-    state.destroy();
 }
 
 std::array<double,4> DoublePendulum::toVector() const {

@@ -12,7 +12,8 @@
 class Cube {
 public:
     Cube(double mass, double x, double y, double z, double size);
-    ~Cube();
+    Cube(const Cube &) = delete;
+    Cube &operator=(const Cube &) = delete;
 
     void update(double dt);
     void reset(double x, double y, double z);

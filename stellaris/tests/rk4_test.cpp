@@ -9,16 +9,6 @@ namespace {
         SystemState state;
         state.resize(1, 0);
 
-        for (double *a : {state.a_theta_x, state.a_theta_y, state.a_theta_z,
-                          state.v_theta_x, state.v_theta_y, state.v_theta_z,
-                          state.theta_x, state.theta_y, state.theta_z,
-                          state.a_x, state.a_y, state.a_z,
-                          state.v_x, state.v_y, state.v_z,
-                          state.p_x, state.p_y, state.p_z,
-                          state.f_x, state.f_y, state.f_z,
-                          state.t_x, state.t_y, state.t_z}) {
-            a[0] = 0.0;
-                          }
         state.m[0] = 1.0;
         state.p_x[0] = 1.0;
 
@@ -37,7 +27,6 @@ namespace {
         }
 
         const double error = std::abs(state.p_x[0] - std::cos(duration));
-        state.destroy();
         return error;
     }
 

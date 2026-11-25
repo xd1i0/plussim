@@ -22,7 +22,6 @@ public:
 
 public:
     Rk4Solver();
-    virtual ~Rk4Solver();
 
     virtual void start(SystemState *initial, double dt);
     virtual bool step(SystemState *system);
