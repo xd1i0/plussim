@@ -2,7 +2,7 @@
 // Created by Daniel Schatz on 04.11.25.
 //
 
-#include "../self/solver.h"
+#include "stellaris/solver.h"
 
 Solver::Solver() {
     m_dt = 0.0;

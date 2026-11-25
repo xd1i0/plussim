@@ -2,7 +2,7 @@
 // Created by Daniel Schatz on 04.11.25.
 //
 
-#include "../self/rk4Solver.h"
+#include "stellaris/rk4Solver.h"
 
 Rk4Solver::Rk4Solver() {
     m_stage = m_nextStage = RkStage::Undefined;
@@ -30,60 +30,60 @@ bool Rk4Solver::step(SystemState *state) {
         case RkStage::Stage_2:
         case RkStage::Stage_3:
             for (int i = 0; i < state->n; ++i) {
-                state->v_theta_x[i] =
-                    m_initialState.v_theta_x[i] + m_dt * state->a_theta_x[i] / 2.0;
-                state->v_theta_y[i] =
-                    m_initialState.v_theta_y[i] + m_dt * state->a_theta_y[i] / 2.0;
-                state->v_theta_z[i] =
-                    m_initialState.v_theta_z[i] + m_dt * state->a_theta_z[i] / 2.0;
-                state->theta_x[i] =
-                    m_initialState.theta_x[i] + m_dt * state->v_theta_x[i] / 2.0;
-                state->theta_y[i] =
-                    m_initialState.theta_y[i] + m_dt * state->v_theta_y[i] / 2.0;
-                state->theta_z[i] =
-                    m_initialState.theta_z[i] + m_dt * state->v_theta_z[i] / 2.0;
-                state->v_x[i] =
-                    m_initialState.v_x[i] + m_dt * state->a_x[i] / 2.0;
-                state->v_y[i] =
-                    m_initialState.v_y[i] + m_dt * state->a_y[i] / 2.0;
-                state->v_z[i] =
-                    m_initialState.v_z[i] + m_dt * state->a_z[i] / 2.0;
                 state->p_x[i] =
                     m_initialState.p_x[i] + m_dt * state->v_x[i] / 2.0;
                 state->p_y[i] =
                     m_initialState.p_y[i] + m_dt * state->v_y[i] / 2.0;
                 state->p_z[i] =
                     m_initialState.p_z[i] + m_dt * state->v_z[i] / 2.0;
+                state->v_x[i] =
+                    m_initialState.v_x[i] + m_dt * state->a_x[i] / 2.0;
+                state->v_y[i] =
+                    m_initialState.v_y[i] + m_dt * state->a_y[i] / 2.0;
+                state->v_z[i] =
+                    m_initialState.v_z[i] + m_dt * state->a_z[i] / 2.0;
+                state->theta_x[i] =
+                    m_initialState.theta_x[i] + m_dt * state->v_theta_x[i] / 2.0;
+                state->theta_y[i] =
+                    m_initialState.theta_y[i] + m_dt * state->v_theta_y[i] / 2.0;
+                state->theta_z[i] =
+                    m_initialState.theta_z[i] + m_dt * state->v_theta_z[i] / 2.0;
+                state->v_theta_x[i] =
+                    m_initialState.v_theta_x[i] + m_dt * state->a_theta_x[i] / 2.0;
+                state->v_theta_y[i] =
+                    m_initialState.v_theta_y[i] + m_dt * state->a_theta_y[i] / 2.0;
+                state->v_theta_z[i] =
+                    m_initialState.v_theta_z[i] + m_dt * state->a_theta_z[i] / 2.0;
             }
 
             state->dt = m_dt / 2.0;
             break;
         case RkStage::Stage_4:
             for (int i = 0; i < state->n; ++i) {
-                state->v_theta_x[i] =
-                    m_initialState.v_theta_x[i] + m_dt * state->a_theta_x[i];
-                state->v_theta_y[i] =
-                    m_initialState.v_theta_y[i] + m_dt * state->a_theta_y[i];
-                state->v_theta_z[i] =
-                    m_initialState.v_theta_z[i] + m_dt * state->a_theta_z[i];
-                state->theta_x[i] =
-                    m_initialState.theta_x[i] + m_dt * state->v_theta_x[i];
-                state->theta_y[i] =
-                    m_initialState.theta_y[i] + m_dt * state->v_theta_y[i];
-                state->theta_z[i] =
-                    m_initialState.theta_z[i] + m_dt * state->v_theta_z[i];
-                state->v_x[i] =
-                    m_initialState.v_x[i] + m_dt * state->a_x[i];
-                state->v_y[i] =
-                    m_initialState.v_y[i] + m_dt * state->a_y[i];
-                state->v_z[i] =
-                    m_initialState.v_z[i] + m_dt * state->a_z[i];
                 state->p_x[i] =
                     m_initialState.p_x[i] + m_dt * state->v_x[i];
                 state->p_y[i] =
                     m_initialState.p_y[i] + m_dt * state->v_y[i];
                 state->p_z[i] =
                     m_initialState.p_z[i] + m_dt * state->v_z[i];
+                state->v_x[i] =
+                    m_initialState.v_x[i] + m_dt * state->a_x[i];
+                state->v_y[i] =
+                    m_initialState.v_y[i] + m_dt * state->a_y[i];
+                state->v_z[i] =
+                    m_initialState.v_z[i] + m_dt * state->a_z[i];
+                state->theta_x[i] =
+                    m_initialState.theta_x[i] + m_dt * state->v_theta_x[i];
+                state->theta_y[i] =
+                    m_initialState.theta_y[i] + m_dt * state->v_theta_y[i];
+                state->theta_z[i] =
+                    m_initialState.theta_z[i] + m_dt * state->v_theta_z[i];
+                state->v_theta_x[i] =
+                    m_initialState.v_theta_x[i] + m_dt * state->a_theta_x[i];
+                state->v_theta_y[i] =
+                    m_initialState.v_theta_y[i] + m_dt * state->a_theta_y[i];
+                state->v_theta_z[i] =
+                    m_initialState.v_theta_z[i] + m_dt * state->a_theta_z[i];
             }
 
             state->dt = m_dt;

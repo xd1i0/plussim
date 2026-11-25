@@ -5,7 +5,7 @@
 #ifndef PLUSSIM_SOLVER_H
 #define PLUSSIM_SOLVER_H
 
-#include "system_state.h"
+#include "stellaris/system_state.h"
 
 class Solver {
 public:

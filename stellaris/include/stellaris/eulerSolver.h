@@ -4,7 +4,7 @@
 
 #ifndef PLUSSIM_EULERSOLVER_H
 #define PLUSSIM_EULERSOLVER_H
-#include "../self/solver.h"
+#include "stellaris/solver.h"
 
 
 class EulerSolver : public Solver {

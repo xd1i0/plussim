@@ -64,14 +64,8 @@ target_link_libraries(rlimgui PUBLIC imgui raylib)
 file(GLOB_RECURSE HEADER_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 file(GLOB_RECURSE SRC_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
-# add the .h and .cpp files from the src directory
-file(GLOB_RECURSE EXT_FILES 
-  ${CMAKE_CURRENT_SOURCE_DIR}/external/self/*.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/external/self/*.h
-)
-
 # add normal executable
-add_executable(${PROJECT_NAME} ${HEADER_FILES} ${SRC_FILES} ${EXT_FILES})
+add_executable(${PROJECT_NAME} ${HEADER_FILES} ${SRC_FILES})
 
 # link the executable to raylib
 target_link_libraries(${PROJECT_NAME} PUBLIC rlimgui stellaris)

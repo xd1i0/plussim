@@ -5,9 +5,9 @@
 #ifndef PLUSSIM_CUBE_H
 #define PLUSSIM_CUBE_H
 
-#include "../external/self/system_state.h"
-#include "../external/self/eulerSolver.h"
-#include "../external/self/rk4Solver.h"
+#include "stellaris/system_state.h"
+#include "stellaris/eulerSolver.h"
+#include "stellaris/rk4Solver.h"
 
 class Cube {
 public:

@@ -5,7 +5,7 @@
 #include "double_pendulum.h"
 #include "raylib.h"
 #include <cmath>
-#include "../external/self/rk4Solver.h"
+#include "stellaris/rk4Solver.h"
 
 DoublePendulum::DoublePendulum(float length1, float length2, float mass1, float mass2,
                                float angle1, float angle2, float timeStep)

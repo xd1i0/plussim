@@ -2,7 +2,7 @@
 // Created by Daniel Schatz on 07.11.25.
 //
 
-#include "../self/eulerSolver.h"
+#include "stellaris/eulerSolver.h"
 
 EulerSolver::EulerSolver() {
 }

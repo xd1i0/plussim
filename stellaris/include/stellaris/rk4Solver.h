@@ -6,7 +6,7 @@
 #define PLUSSIM_RK4SOLVER_H
 
 
-#include "../self/solver.h"
+#include "stellaris/solver.h"
 
 
 class Rk4Solver : public Solver {
