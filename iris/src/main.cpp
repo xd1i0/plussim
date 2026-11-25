@@ -83,7 +83,7 @@ int main() {
         20.0f       // height_speed
     };
 
-    SetTargetFPS(61);
+    SetTargetFPS(60);
 
     rlImGuiSetup(true);
 
@@ -109,6 +109,9 @@ int main() {
 
     //DoublePendulum pendulum(2.0f, 2.0f, 0.2f, 0.2f, M_PI / 2.0f, M_PI / 2.0f, 0.05f);
 
+    const double fixedDt = 1.0 / 240.0;
+    double accumulator = 0.0;
+
     while (!WindowShouldClose()) {
         // Reset cube with R key
         if (IsKeyPressed(KEY_R)) {
@@ -122,8 +125,12 @@ int main() {
 
         handleCamera(camera, cameraControl);
 
-        double dt = GetFrameTime();
-        cube.update(dt);
+        // Cap the frame time so a long stall cannot queue up endless physics steps
+        accumulator += std::min(static_cast<double>(GetFrameTime()), 0.1);
+        while (accumulator >= fixedDt) {
+            cube.update(fixedDt);
+            accumulator -= fixedDt;
+        }
 
         double x, y, z;
         cube.getPosition(x, y, z);
