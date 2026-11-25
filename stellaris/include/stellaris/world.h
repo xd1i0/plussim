@@ -27,8 +27,12 @@ public:
         m_forces.push_back(std::move(force));
     }
     void step(double dt);
+    void setSolverType(std::unique_ptr<Solver> solver) {
+        m_solver = std::move(solver);
+    }
 
     SystemState &state() { return m_state; }
+    const SystemState &state() const { return m_state; }
 
 private:
     SystemState m_state;
